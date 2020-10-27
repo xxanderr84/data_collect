@@ -5,9 +5,13 @@ from pymongo import MongoClient
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+# chrome_options.add_argument('start-maximized')
 
 # connect to server
-driver = webdriver.Chrome(executable_path='./chromedriver.exe')
+driver = webdriver.Chrome(executable_path='./chromedriver.exe', options=chrome_options)
 driver.get('https://mail.ru')
 login = driver.find_element_by_id('mailbox:login-input')
 login.send_keys('study.ai_172@mail.ru')
@@ -53,7 +57,6 @@ while True:
     al_letters.append(letter_info)
     try:
         next_letter = driver.find_element_by_class_name('portal-menu-element_next')
-        i = i + 1
         next_letter.click()
     except Exception as e:
         print(e)
