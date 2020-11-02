@@ -4,13 +4,6 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 import scrapy
 from scrapy.loader.processors import MapCompose, TakeFirst
-import xml.etree.ElementTree as ET
-
-
-def characters_set(value):
-
-    return value
-
 
 def filter_price(value):
     return float(value.replace(' ', ''))
